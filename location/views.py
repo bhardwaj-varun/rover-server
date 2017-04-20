@@ -10,11 +10,12 @@ import json
 class LocationList(APIView):
 
     def get(self,request):
-        locations=Location.objects.all();
-        serializer =LocationSerializer(locations,many=True)
+        locations = Location.objects.all();
+        serializer = LocationSerializer (locations, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self,request):
+
         serializer = LocationSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()
@@ -25,9 +26,9 @@ class LocationList(APIView):
 class LocationLast(APIView):
 
     def get(self,request):
-        last=Location.objects.last()
+        last = Location.objects.last()
         serializer = LocationSerializer(last)
-        return Response({'last':serializer.data},status=status.HTTP_200_OK)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self,request):
         pass
